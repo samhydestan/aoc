@@ -1,6 +1,6 @@
 ﻿using static System.IO.File;
 
-string[] food = ReadAllLines("./ernesta/ernesta.txt");
+string[] food = ReadAllLines("./ernesta1/ernesta.txt");
 long b1g = 0;
 long carry = 0;
 foreach(var item in food){
