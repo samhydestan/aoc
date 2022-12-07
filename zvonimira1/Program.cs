@@ -1,5 +1,4 @@
 ﻿using static System.IO.File;
-using System.Linq;
 
 var lines = ReadAllLines("./zvonimira1/zvonimira.txt");
 Dir? dir = null;
