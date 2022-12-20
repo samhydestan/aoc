@@ -10,7 +10,7 @@ long until = 1000000000000;
 var peakcache = new List<long>();
 var stopcache = new List<long>();
 var jetcache = new List<int>();
-var jets = ReadAllLines("./nevenka1/nevenka.txt")[0];
+var jets = ReadAllLines("./nevenka2/nevenka.txt")[0];
 bool cycled = false;
 long stopped = 0;
 long dstopped = 0;
@@ -92,7 +92,7 @@ while(true){
             );
             break;
     }
-    if(jet == jets.Length-1){
+    if(jet == 0 && stopped > 0){
         cycled = true;
     }
     if(done){
@@ -103,7 +103,6 @@ while(true){
         }
         y = peak+4;
         x = 2;
-        shape = (short)((shape+1)%5);
         if(cycled && shape == 0){
             var s = skip(until, aftercache, peakcache, stopcache, jetcache, jet, peak-dpeak, stopped-dstopped);
             if(!BigInteger.Equals(s, res)){
@@ -113,6 +112,7 @@ while(true){
             dstopped = stopped;
             dpeak = peak;
         }
+        shape = (short)((shape+1)%5);
         cycled = false;
         aftercache[stopped] = peak;
         stopped++;
@@ -361,7 +361,7 @@ BigInteger skip (
             var after = (until - beforestops)%cyclestops;
             var end = new BigInteger(aftercache[beforestops+after] - aftercache[beforestops]);
             var mid = BigInteger.Multiply(new BigInteger(cycle), new BigInteger(cycles));
-            return BigInteger.Add(BigInteger.Add(new BigInteger(before), mid), end-1);
+            return BigInteger.Add(BigInteger.Add(new BigInteger(before), mid), end);
         }
     }
     return BigInteger.Zero;
